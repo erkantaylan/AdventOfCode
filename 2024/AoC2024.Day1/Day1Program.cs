@@ -1,6 +1,6 @@
 ﻿namespace AoC2024.Day1;
 
-internal static class Program
+internal static class Day1Program
 {
     private const string InputPath = "input.txt";
 
@@ -9,8 +9,8 @@ internal static class Program
         (List<int> lefts, List<int> rights) = ParseInput();
 
         //Part I - Distance
-        //int totalDistance = FindDistances(lefts, rights);
-        //Console.WriteLine(totalDistance);
+        int totalDistance = FindDistances(lefts, rights);
+        Console.WriteLine($"Distances: {totalDistance}");
 
         //Part 2 - Similarities
 
@@ -19,7 +19,7 @@ internal static class Program
             (from left in lefts
                 let appearanceCount = rights.Count(o => o == left)
                 select left * appearanceCount).Sum();*/
-        
+
         var totalSimilarities = 0;
 
         foreach (int left in lefts)
@@ -29,7 +29,7 @@ internal static class Program
             totalSimilarities += similarity;
         }
 
-        Console.WriteLine(totalSimilarities);
+        Console.WriteLine($"Similarities {totalSimilarities}");
     }
 
     private static int FindDistances(List<int> lefts, List<int> rights)
