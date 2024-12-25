@@ -8,7 +8,32 @@ internal static class Program
     {
         (List<int> lefts, List<int> rights) = ParseInput();
 
+        //Part I - Distance
+        //int totalDistance = FindDistances(lefts, rights);
+        //Console.WriteLine(totalDistance);
 
+        //Part 2 - Similarities
+
+
+        /*int totalSimilarities =
+            (from left in lefts
+                let appearanceCount = rights.Count(o => o == left)
+                select left * appearanceCount).Sum();*/
+        
+        var totalSimilarities = 0;
+
+        foreach (int left in lefts)
+        {
+            int appearanceCount = rights.Count(o => o == left);
+            int similarity = left * appearanceCount;
+            totalSimilarities += similarity;
+        }
+
+        Console.WriteLine(totalSimilarities);
+    }
+
+    private static int FindDistances(List<int> lefts, List<int> rights)
+    {
         int count = lefts.Count;
 
         var totalDistance = 0;
@@ -20,7 +45,7 @@ internal static class Program
             totalDistance += distance;
         }
 
-        Console.WriteLine(totalDistance);
+        return totalDistance;
     }
 
     private static int GetMinAndRemove(this List<int> items)
